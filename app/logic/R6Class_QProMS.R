@@ -15,6 +15,9 @@ box::use(
   clusterProfiler[enrichGO, simplify, gseGO],
   org.Hs.eg.db[org.Hs.eg.db],
   org.Mm.eg.db[org.Mm.eg.db],
+  org.EcK12.eg.db[ org.EcK12.eg.db],
+  org.Dm.eg.db[org.Dm.eg.db],
+  org.Sc.sgd.db[org.Sc.sgd.db],
   viridis[viridis],
   htmlwidgets[JS],
   reactable[reactable, colDef],
@@ -2060,7 +2063,20 @@ QProMS <- R6Class(
       edges_string_table <- NULL
       edges_corum_table <- NULL
       if(is.null(self$nodes_table)){return(NULL)}
-      if(self$organism == "human"){tax_id <- 9606} else {tax_id <- 10090}
+      if(self$organism == "human") {
+        tax_id <- 9606
+      } else if(self$organism == "mouse") {
+        tax_id <- 10090
+      } else if(self$organism == "ecoli") {
+        tax_id <- 562
+      } else if(self$organism == "drosophila") {
+        tax_id <- 7227
+      } else if(self$organism == "buddingyeast") {
+        tax_id <- 559292
+      } else {
+        tax_id <- 9606
+      }
+      
       if("string" %in% source) {
         edges_string_table <- self$name_for_edges %>%
           rba_string_interactions_network(species = tax_id, verbose = FALSE) %>%
@@ -2300,7 +2316,20 @@ QProMS <- R6Class(
     },
     go_ora = function(list_from, focus, ontology, simplify_thr, alpha, p_adj_method, background) {
       if(is.null(focus)){return(NULL)}
-      orgdb <- if (self$organism == "human") org.Hs.eg.db else org.Mm.eg.db
+      orgdb <- if (self$organism == "human") {
+        org.Hs.eg.db
+      } else if (self$organism == "mouse") {
+        org.Mm.eg.db
+      } else if (self$organism == "ecoli") {
+        org.EcK12.eg.db  
+      } else if (self$organism == "drosophila") {
+        org.Dm.eg.db     
+      } else if (self$organism == "buddingyast") {
+        org.Sc.sgd.db   
+      } else {
+        org.Mm.eg.db
+      }
+      
       
       if (list_from == "univariate") {
         groupped_data <- map(focus, ~ self$make_ora_list_internal(focus = .x)) %>% 
@@ -2500,7 +2529,21 @@ QProMS <- R6Class(
     },
     go_gsea = function(test, rank_type, by_condition, ontology, simplify_thr, alpha, p_adj_method) {
       if(is.null(test)){return(NULL)}
-      orgdb <- if (self$organism == "human") org.Hs.eg.db else org.Mm.eg.db
+      
+      orgdb <- if (self$organism == "human") {
+        org.Hs.eg.db
+      } else if (self$organism == "mouse") {
+        org.Mm.eg.db
+      } else if (self$organism == "ecoli") {
+        org.EcK12.eg.db  # E. coli K12 database
+      } else if (self$organism == "drosophila") {
+        org.Dm.eg.db     # Drosophila database
+      } else if (self$organism == "buddingyast") {
+        org.Sc.sgd.db    # Saccharomyces cerevisiae (yeast) database
+      } else {
+        org.Hs.eg.db
+      }
+      
       
       list_of_gesa_vector <- map(
         .x = test,

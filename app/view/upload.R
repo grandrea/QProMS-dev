@@ -117,6 +117,7 @@ server <- function(id, r6, main_session) {
                 inputId = ns("organism"),
                 label = "Organism",
                 choices = c("Homo Sapiens" = "human",
+                            "Mus Musculus" = "mouse",
                             "Drosophila Melanogaster" = "drosophila",
                             "Saccharomyces Cerevisiae" = "buddingyeast",
                             "Escherichia Coli" = "ecoli"),
