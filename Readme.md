@@ -51,7 +51,7 @@ Upload search engine results. Files should have a column for gene IDs, and colum
 | Dia-NN      | report.unique_genes_matrix.txt | |  
 | AlphaPept   | results_proteins.csv           | |  
 
-Select the organism of your data and and click on "start". If your organism is not available or gene names are missing, the app will still work, but some functions such as GO enrichment will be missing. The app will automatically detect which result table you have if automatic detection fails because of a non-standard table. You may then select which columns of your table represent gene names and which ones are intensities from the left side menu.
+Select the organism of your data and click on "start". If your organism is not available or gene names are missing, the app will still work, but some functions such as GO enrichment will be missing. The app will automatically detect which result table you have if automatic detection fails because of a non-standard table. You may then select which columns of your table represent gene names and which ones are intensities from the left side menu.
 
 For AlphaPept, since the program does not parse gene names automatically, Network, ORA and GSEA are disabled by default unless the user has parsed gene names from Protein ID. The user may then manually select which column correspond to gene names in his or her dataframe.
 
@@ -115,6 +115,7 @@ Correlation matrix for the data. Scatterplots for individual experiments are ava
 
 Users can select the type of correlation analysis by clicking on the parameters tab to set Pearson (default), Spearmann or Kendall correlation.
 
+In order to focus on individual or few scatter plots, the user may filter by selecting a name or group of names appearing in the X and Y axis labels inside the "Trelliscope" filter view.
 
 ### Rank
 
