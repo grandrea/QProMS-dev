@@ -116,7 +116,10 @@ server <- function(id, r6, main_session) {
               selectInput(
                 inputId = ns("organism"),
                 label = "Organism",
-                choices = c("Homo Sapiens" = "human", "Mus Musculus" = "mouse"),
+                choices = c("Homo Sapiens" = "human",
+                            "Drosophila Melanogaster" = "drosophila",
+                            "Saccharomyces Cerevisiae" = "buddingyeast",
+                            "Escherichia Coli" = "ecoli"),
                 selected = "human"
               )
             )
@@ -144,7 +147,11 @@ server <- function(id, r6, main_session) {
               selectInput(
                 inputId = ns("organism"),
                 label = "Organism",
-                choices = c("Homo Sapiens" = "human", "Mus Musculus" = "mouse"),
+                choices = c("Homo Sapiens" = "human",
+                            "Mus Musculus" = "mouse",
+                            "Drosophila Melanogaster" = "drosophila",
+                            "Saccharomyces Cerevisiae" = "buddingyeast",
+                            "Escherichia Coli" = "ecoli"),
                 selected = "human"
               )
             )
